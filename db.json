@@ -1,0 +1,81 @@
+{
+  "employees": [
+    {
+      "id": 1,
+      "name": "kkkk",
+      "age": 21,
+      "department": "Embedded",
+      "currentEmp": "YES"
+    },
+    {
+      "id": 2,
+      "name": "krish",
+      "age": 20,
+      "department": "Embedded",
+      "currentEmp": "YES"
+    },
+    {
+      "id": 3,
+      "name": "Seju",
+      "age": 21,
+      "department": "HR",
+      "currentEmp": "YES"
+    },
+    {
+      "id": 4,
+      "name": "sejal",
+      "age": 21,
+      "department": "Embedded",
+      "currentEmp": "YES"
+    },
+    {
+      "id": 5,
+      "name": "krish",
+      "age": 20,
+      "department": "Embedded",
+      "currentEmp": "YES"
+    },
+    {
+      "id": 6,
+      "name": "Priya",
+      "age": 10,
+      "department": "HR",
+      "currentEmp": "YES"
+    },
+    {
+      "id": 7,
+      "name": "Rut",
+      "age": 9,
+      "department": "Software",
+      "currentEmp": "YES"
+    },
+    {
+      "id": 8,
+      "name": "Sej",
+      "age": 22,
+      "department": "Embedded",
+      "currentEmp": "YES"
+    },
+    {
+      "id": 9,
+      "name": "ss",
+      "age": 23,
+      "department": "Embedded",
+      "currentEmp": "YES"
+    },
+    {
+      "id": 10,
+      "name": "qwq",
+      "age": -2,
+      "department": "Software",
+      "currentEmp": "YES"
+    },
+    {
+      "id": 11,
+      "name": "asakl",
+      "age": -3,
+      "department": "Software",
+      "currentEmp": "YES"
+    }
+  ]
+}

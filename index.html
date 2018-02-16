@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html ng-app="empApp" ng-controller="empCtrl">
+
+<head>
+
+
+
+    <title>Employee Management System</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.min.js'></script>
+    <script src="./js/empApp.js"></script>
+    <link href="./css/simple-sidebar.css" rel="stylesheet">
+
+</head>
+
+<body class="text-info">
+
+    <div id="wrapper" class="toggled">
+
+        <div id="sidebar-wrapper">
+            <center>
+                <br>
+                <br>
+              <!--  <img src="desktop/download.jpeg" > -->
+            </center>
+            <ul class="sidebar-nav">
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <li class="sidebar-brand">
+
+                    <h3>
+                        Employees
+                    </h3>
+                </li>
+                <li>
+                    <a ng-click="showAdd()" href="#">Add Employee</a>
+                </li>
+                <li>
+                    <a ng-click="showList()" href="#">Employee List</a>
+                </li>
+                <li>
+                    <a ng-click="showAbout()" href="#">About</a>
+                </li>
+
+            </ul>
+
+        </div>
+
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <h1>Employee Management System</h1>
+              <!--  <p>
+                    <img src="desktop/download.jpeg" height="300" width="800">
+                </p> -->
+
+                <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Toggle Menu</a>
+
+
+                <center>
+
+                    <div ng-show="showadd">
+                        <div class="panel panel-info" style="width:50%">
+                            <div class="panel-heading">Add Employee
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            </div>
+                            <div class="panel-body">
+                                <form name="add">
+                                    <table class="table">
+                                        <tr>
+                                            <td> Name</td>
+
+                                            <td>
+                                                <input type="text" ng-model="employeess.name" placeholder="Your Name" ng-required="true" class="form-control input-sm" />
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Age</td>
+
+                                            <td>
+                                                <input type="number" ng-model="employeess.age" placeholder="Your Age" ng-required="true" class="form-control input-sm">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Department</td>
+
+                                            <td>
+                                                <select ng-model="employeess.department" class="form-control input-sm">
+                                                    <option selected="selected">Software</option>
+                                                    <option>Embedded</option>
+                                                    <option>HR</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Are You Working? </td>
+
+                                            <td>
+                                                <input type="checkbox" ng-model="employeess.currentEmp" ng-true-value="'YES'" ng-false-value="'NO'">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                <center>
+                                                    <button ng-hide="hideadd" ng-click="addEmployee()" class="btn" ng-disabled="add.$invalid">Add</button>
+                                                    <button ng-show="showedit" ng-click="updateEmp()" class="btn">Update</button>
+                                                </center>
+                                            </td>
+
+                                        </tr>
+
+                                    </table>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+
+
+                    <div ng-show="showlist">
+                        <!-- <h1>Employee List</h1>-->
+
+
+
+                        <div class="panel panel-info">
+                            <!-- Default panel contents -->
+                            <div class="panel-heading">Employee List</div>
+                            <div class="panel-body">
+                                Show:
+                                <select ng-model="limit">
+                                    <option>0</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>5</option>
+                                    <option>10</option>
+                                </select>
+                            </div>
+                            <table ui-jq="dataTable" ui-options="dataTableOpt" ng-model="showlist" class="table">
+
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Age</th>
+                                    <th>Department</th>
+                                    <th>is CUrrent?</th>
+                                    <th>Action</th>
+                                </tr>
+                                <tr ng-repeat="emp in employee | limitTo:limit" >
+                                    <td>{{emp.id}}</td>
+                                    <td>{{emp.name }}</td>
+                                    <td>{{emp.age}}</td>
+                                    <td>{{emp.department}}</td>
+                                    <td>{{emp.currentEmp}}</td>
+                                    <td colspan="2">
+                                        <button ng-click="deleteEmployee(emp)" class="glyphicon glyphicon-trash"> </button>
+                                        <button ng-click="editEmployee(emp)" class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#editModal"> </button>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                    <div ng-show="showabout">
+                        <h3>This is an about Section</h3>
+                    </div>
+
+
+                    <!-- Modal -->
+
+                    <div class="modal fade, modal" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <div class="panel panel-info">
+                                        <div class="panel-heading">Edit Employee
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        </div>
+
+                                        <center>
+                                            <div class="panel-body">
+                                                    <form name="edit">
+                                                <table style="width:50%" class="table table-bordered">
+                                                    <tr>
+                                                        <td> Name</td>
+
+                                                        <td>
+                                                            <input type="text" ng-model="emps.name" placeholder="Your Name" ng-required="true" class="form-control input-sm" />
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>Age</td>
+
+                                                        <td>
+                                                            <input type="number" ng-model="emps.age" placeholder="Your Age" ng-required="true" class="form-control input-sm">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Department</td>
+
+                                                        <td>
+                                                            <select ng-model="emps.department" class="form-control input-sm">
+                                                                <option selected="selected">Software</option>
+                                                                <option>Embedded</option>
+                                                                <option>HR</option>
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Are You Working </td>
+
+                                                        <td>
+                                                            <input type="checkbox" ng-model="emps.currentEmp" ng-true-value="'YES'" ng-false-value="'NO'">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="2">
+                                                            <center>
+                                                                <!--<button ng-hide="hideadd" ng-click="addEmp()" class="btn" >Add</button>-->
+                                                                <button ng-click="editEmployee(emps)"  class="btn" data-dismiss="modal" aria-hidden="true" >Update</button>
+                                                            </center>
+                                                        </td>
+
+                                                    </tr>
+
+                                                </table>
+                                            </form>
+                                            </div>
+                                        </center>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                    </div>
+                    <!-- /.modal -->
+                </center>
+            </div>
+        </div>
+    </div>
+    <script>
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+    </script>
+
+</body>
+
+</html>
